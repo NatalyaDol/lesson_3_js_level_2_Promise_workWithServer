@@ -1,6 +1,7 @@
 var blockForGood =   document.querySelector('.goods-list');
 var blockForGoodTitle = document.getElementById('goods-list__text__title');
 
+const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online­store­api/master/responses';
 const goods = [
     { title: 'Shirt', price: 150 },
     { title: 'Socks', price: 50 },
@@ -71,6 +72,23 @@ var openCart = (time) => {
         list.render();
     }
 };
+
+
+function makeGETRequest(url, callback) {
+    var xhr;
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+      xhr = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        callback(xhr.responseText);
+      }
+  }
+    xhr.open('GET', url, true);
+    xhr.send();
+  }
 
 //Используя promise, реализовать следующие сценарии: 
 //а) с вероятностью 60% загрузка данных с сервера прошла успешно (т.е. функция создания запроса из методички) 
